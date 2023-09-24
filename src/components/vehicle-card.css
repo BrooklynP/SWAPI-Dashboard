@@ -1,0 +1,41 @@
+.vehicle-card header, .vehicle-card .vehicle-card-body, .vehicle-card footer, .vehicle-card .vehicle-card-image{
+    border: solid 1px white;
+    margin-bottom: 4px;
+}
+
+.vehicle-card-body, .vehicle-card footer, .vehicle-card header{
+    padding: 4px 16px;
+}
+
+.vehicle-card p{
+    margin: 0;
+}
+
+.vehicle-card header{
+    text-align: center;
+}
+
+.vehicle-card footer{
+    text-align: right;
+}
+
+.vehicle-card{
+    max-width: 400px;
+    min-width: 400px;
+}
+
+.vehicle-card img{
+    width: 100%;
+    height: auto;
+}
+
+.vehicle-card-stats{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.vehicle-card-stats div{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
