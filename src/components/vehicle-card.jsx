@@ -10,8 +10,10 @@ const VehicleCard = ({ vehicle }) => {
                 <img src="https://clipart-library.com/data_images/57896.jpg"></img>
             </div>
             <div className="vehicle-card-body">
-                <p>{vehicle.model || ""} - </p>
-                <p><small>{vehicle.manufacturer || ""}</small></p>
+                <div>
+                    <h3>{vehicle.model || ""} - </h3>
+                    <h4><small>{vehicle.manufacturer || ""}</small></h4>
+                </div>
                 <div className="vehicle-card-stats">
                     <div title="Crew"><p><i className="fa-solid fa-id-card"></i></p><p>{vehicle.crew || -1}</p></div>
                     <div title="Passengers"><p><i className="fa-solid fa-person"></i></p><p>{vehicle.passengers || -1}</p></div>

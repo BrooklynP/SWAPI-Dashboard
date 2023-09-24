@@ -1,5 +1,5 @@
 .vehicle-card header, .vehicle-card .vehicle-card-body, .vehicle-card footer, .vehicle-card .vehicle-card-image{
-    border: solid 1px white;
+    border: solid 4px white;
     margin-bottom: 4px;
 }
 
@@ -7,7 +7,67 @@
     padding: 4px 16px;
 }
 
-.vehicle-card p{
+.vehicle-card footer {
+    --all:0px;
+    --bottom-left: 12px;
+    --bottom-right: 12px;
+    --b:white;
+    --b-thickness: 4px;
+    --bkg-color: #394B4F;
+
+    border:var(--b-thickness) solid var(--b);
+    background:
+       linear-gradient(  45deg, var(--b) 0 calc(var(--bottom-left,var(--all)) + var(--b-thickness)) ,transparent 0) bottom left /50% 50%,
+       linear-gradient( -45deg, var(--b) 0 calc(var(--bottom-right,var(--all)) + var(--b-thickness)),transparent 0) bottom right/50% 50%,
+       linear-gradient( 135deg, var(--b) 0 calc(var(--top-left,var(--all)) + var(--b-thickness))    ,transparent 0) top left    /50% 50%,
+       linear-gradient(-135deg, var(--b) 0 calc(var(--top-right,var(--all)) + var(--b-thickness))   ,transparent 0) top right   /50% 50%,
+       var(--img,var(--bkg-color));
+    background-origin:border-box;
+    background-repeat:no-repeat;
+    -webkit-mask:
+       linear-gradient(  45deg, transparent 0 var(--bottom-left,var(--all)) ,#fff 0) bottom left,
+       linear-gradient( -45deg, transparent 0 var(--bottom-right,var(--all)),#fff 0) bottom right,
+       linear-gradient( 135deg, transparent 0 var(--top-left,var(--all))    ,#fff 0) top left,
+       linear-gradient(-135deg, transparent 0 var(--top-right,var(--all))   ,#fff 0) top right;
+     -webkit-mask-size:53% 53%;
+     -webkit-mask-repeat:no-repeat;
+}
+
+.vehicle-card header {
+    --all:0px;
+    --top-left: 12px;
+    --top-right: 12px;
+    --b:white;
+    --b-thickness: 4px;
+    --bkg-color: #394B4F;
+
+    border:var(--b-thickness) solid var(--b);
+    background:
+       linear-gradient(  45deg, var(--b) 0 calc(var(--bottom-left,var(--all)) + var(--b-thickness)) ,transparent 0) bottom left /50% 50%,
+       linear-gradient( -45deg, var(--b) 0 calc(var(--bottom-right,var(--all)) + var(--b-thickness)),transparent 0) bottom right/50% 50%,
+       linear-gradient( 135deg, var(--b) 0 calc(var(--top-left,var(--all)) + var(--b-thickness))    ,transparent 0) top left    /50% 50%,
+       linear-gradient(-135deg, var(--b) 0 calc(var(--top-right,var(--all)) + var(--b-thickness))   ,transparent 0) top right   /50% 50%,
+       var(--img,var(--bkg-color));
+    background-origin:border-box;
+    background-repeat:no-repeat;
+    -webkit-mask:
+       linear-gradient(  45deg, transparent 0 var(--bottom-left,var(--all)) ,#fff 0) bottom left,
+       linear-gradient( -45deg, transparent 0 var(--bottom-right,var(--all)),#fff 0) bottom right,
+       linear-gradient( 135deg, transparent 0 var(--top-left,var(--all))    ,#fff 0) top left,
+       linear-gradient(-135deg, transparent 0 var(--top-right,var(--all))   ,#fff 0) top right;
+     -webkit-mask-size:50.5% 50.5%;
+     -webkit-mask-repeat:no-repeat;
+  
+}
+
+.vehicle-card-body{
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.vehicle-card p, .vehicle-card h2, .vehicle-card h3, .vehicle-card h4{
     margin: 0;
 }
 
