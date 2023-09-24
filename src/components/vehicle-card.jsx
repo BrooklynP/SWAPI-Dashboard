@@ -11,7 +11,7 @@ const VehicleCard = ({ vehicle }) => {
             </div>
             <div className="vehicle-card-body">
                 <div>
-                    <h3>{vehicle.model || ""} - </h3>
+                    <h3>{vehicle.model || ""}</h3>
                     <h4><small>{vehicle.manufacturer || ""}</small></h4>
                 </div>
                 <div className="vehicle-card-stats">

@@ -1,0 +1,23 @@
+.entity-selection-input li:hover{
+    cursor: pointer;
+}
+
+.entity-selection-input li{
+    color: #596064;
+    background-color: #080C0D;
+    padding: 16px;
+    border-left: solid 2px #596064;
+    border-right: solid 2px #596064;
+    transition: 0.5s;
+}
+
+.entity-selection-input li.selected{
+    color: white;
+    border-left: solid 2px white;
+    border-right: solid 2px white;
+    background-color: #272727;
+}
+
+.entity-selection-input{
+    display: flex;
+}

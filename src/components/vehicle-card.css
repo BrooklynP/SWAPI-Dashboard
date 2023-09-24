@@ -13,10 +13,11 @@
     --bottom-right: 12px;
     --b:white;
     --b-thickness: 4px;
-    --bkg-color: #394B4F;
+    --bkg-color: #181818;
 
     border:var(--b-thickness) solid var(--b);
     background:
+    
        linear-gradient(  45deg, var(--b) 0 calc(var(--bottom-left,var(--all)) + var(--b-thickness)) ,transparent 0) bottom left /50% 50%,
        linear-gradient( -45deg, var(--b) 0 calc(var(--bottom-right,var(--all)) + var(--b-thickness)),transparent 0) bottom right/50% 50%,
        linear-gradient( 135deg, var(--b) 0 calc(var(--top-left,var(--all)) + var(--b-thickness))    ,transparent 0) top left    /50% 50%,
@@ -39,7 +40,7 @@
     --top-right: 12px;
     --b:white;
     --b-thickness: 4px;
-    --bkg-color: #394B4F;
+    --bkg-color: #181818;
 
     border:var(--b-thickness) solid var(--b);
     background:
