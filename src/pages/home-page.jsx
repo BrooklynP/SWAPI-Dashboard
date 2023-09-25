@@ -6,9 +6,9 @@ import { toast } from 'react-toastify';
 const dataReducer = (state, action) => {
     switch(action.type) {
         case "CLEAR":
-            return []
+            return [];
         case "APPEND":
-            return [...state, ...action.data]
+            return [...state, ...action.data];
         case "SET":
             return [...action.data];
         case "SORT":
@@ -56,15 +56,21 @@ const HomePage = () => {
 
     const webRequest = async (endpoint) => {
         return new Promise(async (resolve, reject) => {
+            setNextAPICall("");
             setIsCurrentlyFetching(true);
             const response = await (fetch(endpoint, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }));
+            })).catch((e)=>{reject(); return});
+            if(!response.ok){
+                toast.error("Web Error " + response.status + ":" + response.statusText);
+                reject();
+                return;
+            }
             const responseData = await response.json();
-            const lastOriginalIndex = data.length > 0 ? data[data.length - 1].originalIndex + 1 : 0;
+            const lastOriginalIndex = data.length > 0 ? data[data.length - 1].originalIndex + 1 : 0; //Storing an index allows any sorts to be undone
             const results = responseData.results.map((result, i) => ({ ...result, originalIndex: lastOriginalIndex + i }))
             dispatchData({type:"APPEND", data: results})
             setNextAPICall(responseData.next);
@@ -87,28 +93,28 @@ const HomePage = () => {
         dispatchData({type: "SORT", methodToSortBy, nameAttribute})
     }
 
+    /* START - User Input Events */
     const handleSelectedEntityChange = (e, entity) => {
-        if(isCurrentlyFetching) return false;
-
+        if(isCurrentlyFetching) return false; //Fetching data for new entity before previous one completes would jumble the data together.
         setSelectedEntity(entity);
-        setNextAPICall("");
         dispatchData({type: "CLEAR"});
-        getData("https://swapi.dev/api/" + entity)
+        getData("https://swapi.dev/api/" + "blah blah")
     }
 
     const handleSelectedSortChange = (e, sort) => {
-        if(isCurrentlyFetching) return false;
-
+        if(isCurrentlyFetching) return false; //Shouldn't attempt to sort data until new data is present.
         setSelectedSort(sort);
         runSort(sort);
     }
 
+    //Lazy loads extra data as user gets to the end of current data (if there is extra data to get).
     const handleScroll = (e) => {
         const isAtBottom = e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
         if (isAtBottom && !isCurrentlyFetching && nextAPICall) {
             getData(nextAPICall);
         }
     }
+    /* END - User Input Events */
     
     return (
         <div className="page-container" onScroll={handleScroll}>
