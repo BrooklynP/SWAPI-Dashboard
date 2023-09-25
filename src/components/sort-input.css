@@ -1,0 +1,32 @@
+.sort-input li:hover{
+    cursor: pointer;
+}
+
+.sort-input li{
+    color: #596064;
+    background-color: #080C0D;
+    padding: 16px;
+    border-left: solid 2px #596064;
+    border-right: solid 2px #596064;
+    transition: 0.5s;
+
+    min-width: 100px;
+    text-align: center;
+}
+
+.sort-input li.selected{
+    color: white;
+    border-left: solid 2px white;
+    border-right: solid 2px white;
+    background-color: #272727;
+}
+
+.sort-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sort-input ul{
+    display: flex;
+}

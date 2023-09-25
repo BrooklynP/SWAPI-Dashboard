@@ -9,3 +9,8 @@
     height: 100vh;
     overflow-y: scroll;
 }
+
+.user-controls{
+    display: flex;
+    justify-content: space-evenly;
+}
