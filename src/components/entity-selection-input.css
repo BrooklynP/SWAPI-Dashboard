@@ -14,7 +14,7 @@
     text-align: center;
 }
 
-.entity-selection-input li.selected{
+.entity-selection-input li.selected, .entity-selection-input li:hover{
     color: white;
     border-left: solid 2px white;
     border-right: solid 2px white;

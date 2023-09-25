@@ -14,7 +14,7 @@
     text-align: center;
 }
 
-.sort-input li.selected{
+.sort-input li.selected, .sort-input li:hover{
     color: white;
     border-left: solid 2px white;
     border-right: solid 2px white;
