@@ -3,8 +3,46 @@ import { VehicleList, EntitySelectionInput, SortInput, FilmList } from "../compo
 import "./home-page.css";
 import { toast } from 'react-toastify';
 
+const dataReducer = (state, action) => {
+    switch(action.type) {
+        case "CLEAR":
+            return []
+        case "APPEND":
+            return [...state, ...action.data]
+        case "SET":
+            return [...action.data];
+        case "SORT":
+            switch (action.methodToSortBy) {
+                case "None":
+                    return state.sort((a, b) => a.originalIndex - b.originalIndex)
+                case "Name ▲":
+                    return state.sort((a, b) => {
+                        const nameA = a[action.nameAttribute].toLowerCase(), nameB = b[action.nameAttribute].toLowerCase();
+                        if (nameA < nameB)
+                            return -1;
+                        if (nameA > nameB)
+                            return 1;
+                        return 0;
+                    })
+                case "Name ▼":
+                    return state.sort((a, b) => {
+                        const nameA = a[action.nameAttribute].toLowerCase(), nameB = b[action.nameAttribute].toLowerCase();
+                        if (nameA > nameB)
+                            return -1;
+                        if (nameA < nameB)
+                            return 1;
+                        return 0;
+                    })
+                default:
+                    return state;
+            }
+        default:
+        return state;
+    }
+};
+
 const HomePage = () => {
-    const [data, setData] = React.useState([]);
+    const [data, dispatchData] = React.useReducer(dataReducer, [])
     const [selectedEntity, setSelectedEntity] = React.useState("");
     const [selectedSort, setSelectedSort] = React.useState("None");
     const [nextAPICall, setNextAPICall] = React.useState("");
@@ -28,7 +66,7 @@ const HomePage = () => {
             const responseData = await response.json();
             const lastOriginalIndex = data.length > 0 ? data[data.length - 1].originalIndex + 1 : 0;
             const results = responseData.results.map((result, i) => ({ ...result, originalIndex: lastOriginalIndex + i }))
-            setData([...data, ...results]);
+            dispatchData({type:"APPEND", data: results})
             setNextAPICall(responseData.next);
             resolve();
         }).finally(() => {
@@ -44,46 +82,18 @@ const HomePage = () => {
         })
     }
 
+    const runSort = (methodToSortBy) => {
+        const nameAttribute = (selectedEntity === "starships" || selectedEntity === "vehicles") ? "name" : "title";
+        dispatchData({type: "SORT", methodToSortBy, nameAttribute})
+    }
+
     const handleSelectedEntityChange = (e, entity) => {
         if(isCurrentlyFetching) return false;
 
         setSelectedEntity(entity);
         setNextAPICall("");
-        setData([]);
+        dispatchData({type: "CLEAR"});
         getData("https://swapi.dev/api/" + entity)
-    }
-
-    const runSort = (methodToSortBy) => {
-        const tempData = data;
-        const nameAttribute = (selectedEntity === "starships" || selectedEntity === "vehicles") ? "name" : "title";
-        switch (methodToSortBy) {
-            case "None":
-                tempData.sort((a, b) => a.originalIndex - b.originalIndex)
-                break;
-            case "Name ▲":
-                tempData.sort((a, b) => {
-                    const nameA = a[nameAttribute].toLowerCase(), nameB = b[nameAttribute].toLowerCase();
-                    if (nameA < nameB)
-                        return -1;
-                    if (nameA > nameB)
-                        return 1;
-                    return 0;
-                })
-                break;
-            case "Name ▼":
-                tempData.sort((a, b) => {
-                    const nameA = a[nameAttribute].toLowerCase(), nameB = b[nameAttribute].toLowerCase();
-                    if (nameA > nameB)
-                        return -1;
-                    if (nameA < nameB)
-                        return 1;
-                    return 0;
-                })
-                break;
-            default:
-                break;
-        }
-        setData([...tempData]);
     }
 
     const handleSelectedSortChange = (e, sort) => {
@@ -99,7 +109,7 @@ const HomePage = () => {
             getData(nextAPICall);
         }
     }
-
+    
     return (
         <div className="page-container" onScroll={handleScroll}>
             <header>
