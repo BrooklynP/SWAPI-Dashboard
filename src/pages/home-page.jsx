@@ -103,7 +103,7 @@ const HomePage = () => {
     return (
         <div className="page-container" onScroll={handleScroll}>
             <header>
-                <h1>SWAPI Dashboard</h1>
+                <h1>SWAPI DASHBOARD</h1>
                 <div className="user-controls">
                     <div className="input-container">
                         <EntitySelectionInput options={[{value:"starships", label:"StarShips"}, {value:"vehicles", label:"Vehicles"}, {value:"films", label:"Films"}]} selectedOption={selectedEntity} onChangeFunction={handleSelectedEntityChange} />
