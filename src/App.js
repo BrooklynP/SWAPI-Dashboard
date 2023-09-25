@@ -1,5 +1,8 @@
 import './App.css';
 import { HomePage } from './pages';
+import {ToastContainer,toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
 
@@ -15,6 +18,7 @@ function App() {
   return (
     <div className="App">
       {component}
+      <ToastContainer position='bottom-left'/>
     </div>
   );
 }

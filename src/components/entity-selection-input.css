@@ -9,6 +9,9 @@
     border-left: solid 2px #596064;
     border-right: solid 2px #596064;
     transition: 0.5s;
+
+    min-width: 100px;
+    text-align: center;
 }
 
 .entity-selection-input li.selected{
@@ -18,6 +21,12 @@
     background-color: #272727;
 }
 
-.entity-selection-input{
+.entity-selection-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.entity-selection-input ul{
     display: flex;
 }

@@ -6,9 +6,6 @@ const VehicleCard = ({ vehicle }) => {
             <header>
                 <h2> - {vehicle.name || ""} - </h2>
             </header>
-            <div className="vehicle-card-image">
-                <img src="https://clipart-library.com/data_images/57896.jpg"></img>
-            </div>
             <div className="vehicle-card-body">
                 <div>
                     <h3>{vehicle.model || ""}</h3>

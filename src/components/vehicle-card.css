@@ -5,6 +5,9 @@
 
 .vehicle-card-body, .vehicle-card footer, .vehicle-card header{
     padding: 4px 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .vehicle-card footer {

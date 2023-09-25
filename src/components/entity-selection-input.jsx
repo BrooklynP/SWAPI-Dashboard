@@ -4,13 +4,16 @@ import "./entity-selection-input.css"
 function EntitySelectionInput({ options, selectedOption, id, onChangeFunction }) {
 
     const optionsList = options.map((option, index) =>
-        <li key={index} className={option === selectedOption ? 'selected' : ''} onClick={(e)=>{onChangeFunction(e, option)}}>{option}</li>
+        <li key={index} className={option === selectedOption ? 'selected' : ''} onClick={(e) => { onChangeFunction(e, option) }}>{option}</li>
     )
 
     return (
-        <ul id={id} className='entity-selection-input'>
-            {optionsList}
-        </ul>
+        <div className='entity-selection-input'>
+            <label>Entity</label>
+            <ul id={id}>
+                {optionsList}
+            </ul>
+        </div>
     );
 }
 
