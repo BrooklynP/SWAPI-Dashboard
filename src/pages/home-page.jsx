@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { VehicleList, EntitySelectionInput } from "../components";
+import { VehicleList, EntitySelectionInput, SortInput } from "../components";
 import "./home-page.css";
 import { toast } from 'react-toastify';
-import SortInput from "../components/sort-input";
 
 const HomePage = () => {
     const [data, setData] = React.useState([]);
@@ -106,14 +105,14 @@ const HomePage = () => {
                 <h1>SWAPI Dashboard</h1>
                 <div className="user-controls">
                     <div className="input-container">
-                        <EntitySelectionInput options={["starships", "vehicles", "films"]} selectedOption={selectedEntity} onChangeFunction={handleSelectedEntityChange} />
+                        <EntitySelectionInput options={[{value:"starships", label:"StarShips"}, {value:"vehicles", label:"Vehicles"}, {value:"films", label:"Films"}]} selectedOption={selectedEntity} onChangeFunction={handleSelectedEntityChange} />
                     </div>
                     <div className="input-container">
                         <SortInput options={["None", "Name ▲", "Name ▼"]} selectedOption={selectedSort} onChangeFunction={handleSelectedSortChange} />
                     </div>
                 </div>
             </header>
-            <div >
+            <div>
                 <VehicleList vehicles={data} />
             </div>
         </div>
