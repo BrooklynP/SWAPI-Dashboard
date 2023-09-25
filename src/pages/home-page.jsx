@@ -42,7 +42,7 @@ const dataReducer = (state, action) => {
 };
 
 const HomePage = () => {
-    const [data, dispatchData] = React.useReducer(dataReducer, [])
+    const [data, dispatchData] = React.useReducer(dataReducer, []);
     const [selectedEntity, setSelectedEntity] = React.useState("");
     const [selectedSort, setSelectedSort] = React.useState("None");
     const [nextAPICall, setNextAPICall] = React.useState("");
@@ -52,7 +52,7 @@ const HomePage = () => {
         if(data.length > 1){
             runSort(selectedSort);
         }
-    }, [data.length])
+    }, [data.length]);
 
     const webRequest = async (endpoint) => {
         return new Promise(async (resolve, reject) => {
@@ -71,8 +71,8 @@ const HomePage = () => {
             }
             const responseData = await response.json();
             const lastOriginalIndex = data.length > 0 ? data[data.length - 1].originalIndex + 1 : 0; //Storing an index allows any sorts to be undone
-            const results = responseData.results.map((result, i) => ({ ...result, originalIndex: lastOriginalIndex + i }))
-            dispatchData({type:"APPEND", data: results})
+            const results = responseData.results.map((result, i) => ({ ...result, originalIndex: lastOriginalIndex + i }));
+            dispatchData({type:"APPEND", data: results});
             setNextAPICall(responseData.next);
             resolve();
         }).finally(() => {
@@ -85,12 +85,12 @@ const HomePage = () => {
             pending: "Getting Data...",
             success: "Got Data!",
             error: "Couldn't get data"
-        })
+        });
     }
 
     const runSort = (methodToSortBy) => {
         const nameAttribute = (selectedEntity === "starships" || selectedEntity === "vehicles") ? "name" : "title";
-        dispatchData({type: "SORT", methodToSortBy, nameAttribute})
+        dispatchData({type: "SORT", methodToSortBy, nameAttribute});
     }
 
     /* START - User Input Events */
@@ -98,7 +98,7 @@ const HomePage = () => {
         if(isCurrentlyFetching) return false; //Fetching data for new entity before previous one completes would jumble the data together.
         setSelectedEntity(entity);
         dispatchData({type: "CLEAR"});
-        getData("https://swapi.dev/api/" + "blah blah")
+        getData("https://swapi.dev/api/" + entity);
     }
 
     const handleSelectedSortChange = (e, sort) => {

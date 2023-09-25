@@ -5,7 +5,7 @@ function EntitySelectionInput({ options, selectedOption, id, onChangeFunction })
 
     const optionsList = options.map((option, index) =>
         <li key={index} className={option.value === selectedOption ? 'selected' : ''} onClick={(e) => { onChangeFunction(e, option.value) }}>{option.label}</li>
-    )
+    );
 
     return (
         <div className='entity-selection-input'>
