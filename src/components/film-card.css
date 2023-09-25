@@ -1,0 +1,109 @@
+.film-card header, .film-card .film-card-body, .film-card footer, .film-card .film-card-image{
+    border: solid 4px white;
+    margin-bottom: 4px;
+}
+
+.film-card-body, .film-card footer, .film-card header{
+    padding: 4px 16px;
+}
+
+.film-card footer {
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    --all:0px;
+    --bottom-left: 12px;
+    --bottom-right: 12px;
+    --b:white;
+    --b-thickness: 4px;
+    --bkg-color: #181818;
+
+    border:var(--b-thickness) solid var(--b);
+    background:
+    
+       linear-gradient(  45deg, var(--b) 0 calc(var(--bottom-left,var(--all)) + var(--b-thickness)) ,transparent 0) bottom left /50% 50%,
+       linear-gradient( -45deg, var(--b) 0 calc(var(--bottom-right,var(--all)) + var(--b-thickness)),transparent 0) bottom right/50% 50%,
+       linear-gradient( 135deg, var(--b) 0 calc(var(--top-left,var(--all)) + var(--b-thickness))    ,transparent 0) top left    /50% 50%,
+       linear-gradient(-135deg, var(--b) 0 calc(var(--top-right,var(--all)) + var(--b-thickness))   ,transparent 0) top right   /50% 50%,
+       var(--img,var(--bkg-color));
+    background-origin:border-box;
+    background-repeat:no-repeat;
+    -webkit-mask:
+       linear-gradient(  45deg, transparent 0 var(--bottom-left,var(--all)) ,#fff 0) bottom left,
+       linear-gradient( -45deg, transparent 0 var(--bottom-right,var(--all)),#fff 0) bottom right,
+       linear-gradient( 135deg, transparent 0 var(--top-left,var(--all))    ,#fff 0) top left,
+       linear-gradient(-135deg, transparent 0 var(--top-right,var(--all))   ,#fff 0) top right;
+     -webkit-mask-size:53% 53%;
+     -webkit-mask-repeat:no-repeat;
+}
+
+.film-card header {
+    --all:0px;
+    --top-left: 12px;
+    --top-right: 12px;
+    --b:white;
+    --b-thickness: 4px;
+    --bkg-color: #181818;
+
+    border:var(--b-thickness) solid var(--b);
+    background:
+       linear-gradient(  45deg, var(--b) 0 calc(var(--bottom-left,var(--all)) + var(--b-thickness)) ,transparent 0) bottom left /50% 50%,
+       linear-gradient( -45deg, var(--b) 0 calc(var(--bottom-right,var(--all)) + var(--b-thickness)),transparent 0) bottom right/50% 50%,
+       linear-gradient( 135deg, var(--b) 0 calc(var(--top-left,var(--all)) + var(--b-thickness))    ,transparent 0) top left    /50% 50%,
+       linear-gradient(-135deg, var(--b) 0 calc(var(--top-right,var(--all)) + var(--b-thickness))   ,transparent 0) top right   /50% 50%,
+       var(--img,var(--bkg-color));
+    background-origin:border-box;
+    background-repeat:no-repeat;
+    -webkit-mask:
+       linear-gradient(  45deg, transparent 0 var(--bottom-left,var(--all)) ,#fff 0) bottom left,
+       linear-gradient( -45deg, transparent 0 var(--bottom-right,var(--all)),#fff 0) bottom right,
+       linear-gradient( 135deg, transparent 0 var(--top-left,var(--all))    ,#fff 0) top left,
+       linear-gradient(-135deg, transparent 0 var(--top-right,var(--all))   ,#fff 0) top right;
+     -webkit-mask-size:50.5% 50.5%;
+     -webkit-mask-repeat:no-repeat;
+  
+}
+
+.film-card-body{
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.film-card p, .film-card h2, .film-card h3, .film-card h4{
+    margin: 0;
+}
+
+.film-card header{
+    text-align: center;
+}
+
+.film-card footer{
+    text-align: right;
+}
+
+.film-card{
+    max-width: 400px;
+    min-width: 400px;
+}
+
+.film-card img{
+    width: 100%;
+    height: auto;
+}
+
+.film-card-stats{
+    display: flex;
+    justify-content: space-evenly;
+
+    margin: 16px 0;
+}
+
+.film-card-stats div{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}

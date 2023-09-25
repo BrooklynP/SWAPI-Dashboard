@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { VehicleList, EntitySelectionInput, SortInput } from "../components";
+import { VehicleList, EntitySelectionInput, SortInput, FilmList } from "../components";
 import "./home-page.css";
 import { toast } from 'react-toastify';
 
@@ -55,13 +55,14 @@ const HomePage = () => {
 
     const runSort = (methodToSortBy) => {
         const tempData = data;
+        const nameAttribute = (selectedEntity === "starships" || selectedEntity === "vehicles") ? "name" : "title";
         switch (methodToSortBy) {
             case "None":
                 tempData.sort((a, b) => a.originalIndex - b.originalIndex)
                 break;
             case "Name ▲":
                 tempData.sort((a, b) => {
-                    const nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+                    const nameA = a[nameAttribute].toLowerCase(), nameB = b[nameAttribute].toLowerCase();
                     if (nameA < nameB)
                         return -1;
                     if (nameA > nameB)
@@ -71,7 +72,7 @@ const HomePage = () => {
                 break;
             case "Name ▼":
                 tempData.sort((a, b) => {
-                    const nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase();
+                    const nameA = a[nameAttribute].toLowerCase(), nameB = b[nameAttribute].toLowerCase();
                     if (nameA > nameB)
                         return -1;
                     if (nameA < nameB)
@@ -113,7 +114,8 @@ const HomePage = () => {
                 </div>
             </header>
             <div>
-                <VehicleList vehicles={data} />
+                {(selectedEntity === "starships" || selectedEntity === "vehicles") && <VehicleList vehicles={data} />}
+                {(selectedEntity === "films") && <FilmList films={data} />}
             </div>
         </div>
     );
