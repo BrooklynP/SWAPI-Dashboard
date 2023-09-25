@@ -10,7 +10,7 @@
     border-right: solid 2px #596064;
     transition: 0.5s;
 
-    min-width: 100px;
+    flex: 1 1 0;
     text-align: center;
 }
 
@@ -29,4 +29,6 @@
 
 .sort-input ul{
     display: flex;
+    width: 400px;
+    max-width: 90vw;
 }

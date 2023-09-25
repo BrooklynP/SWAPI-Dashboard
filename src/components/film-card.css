@@ -86,8 +86,8 @@
 }
 
 .film-card{
-    max-width: 400px;
-    min-width: 400px;
+    width: 400px;
+    max-width: 90vw;
 }
 
 .film-card img{
